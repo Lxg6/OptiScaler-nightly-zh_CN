@@ -1,0 +1,5 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+*.sh eol=lf
+# 生成物：字体数据不要做行尾转换/文本差异
+tools_cn/assets/CJK_Font.h -text -diff
