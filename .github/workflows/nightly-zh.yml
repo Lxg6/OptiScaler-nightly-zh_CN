@@ -74,7 +74,7 @@ jobs:
     steps:
       # 1) 本仓库：汉化脚本（tools_cn/ + assets 字体），检出到 zh\
       - name: Checkout zh-CN recipe
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: zh
 
@@ -85,7 +85,7 @@ jobs:
 
       # 2) 官方最新源码（含全部 submodule，XeSS / FidelityFX 的预编译 DLL 都在这里）
       - name: Checkout upstream
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ${{ env.MAIN_REPO }}
           ref: ${{ env.UPSTREAM_REF }}
@@ -168,7 +168,7 @@ jobs:
           }
 
       - name: Upload translation backlog
-        uses: actions/upload-artifact@v7.0.0
+        uses: actions/upload-artifact@v7
         with:
           name: translation-backlog
           path: review\
@@ -263,7 +263,7 @@ jobs:
       - name: Upload artifact
         # 仅手动 make_release=false（不发 release）时上传
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.make_release != 'true'
-        uses: actions/upload-artifact@v7.0.0
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.ver.outputs.filename }}
           path: ${{ github.workspace }}\${{ steps.ver.outputs.filename }}.7z
@@ -304,7 +304,7 @@ jobs:
 
       - name: Publish release
         if: github.event_name == 'schedule' || github.event.inputs.make_release == 'true'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.ver.outputs.release_tag }}
           name: Nightly-zh_CN-${{ steps.ver.outputs.date }}
