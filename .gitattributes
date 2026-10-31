@@ -1,0 +1,3 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+zhkit/assets/font_subset.ttf binary linguist-generated=true
